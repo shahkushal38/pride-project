@@ -13,3 +13,4 @@ export function ProductTableRow(props: IProduct): JSX.Element {
     </tr>
   );
 }
+
