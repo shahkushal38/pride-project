@@ -1,8 +1,28 @@
 import { ITodoItem } from "./TodoList.types";
-import { CREATE_TODO, REMOVE_TODO, MARK_TODO_AS_COMPLETED } from "./actions";
+import {
+  CREATE_TODO,
+  REMOVE_TODO,
+  MARK_TODO_AS_COMPLETED,
+  LOAD_TODOS_FAILURE,
+  LOAD_TODOS_IN_PROGRESS,
+  LOAD_TODOS_SUCCESS,
+} from "./actions";
+
+export const isLoading = (state: boolean = false, action: any) => {
+  const { type } = action;
+
+  switch (type) {
+    case LOAD_TODOS_FAILURE:
+      return true;
+    case LOAD_TODOS_IN_PROGRESS:
+    case LOAD_TODOS_SUCCESS:
+      return false;
+    default:
+      return true;
+  }
+};
 
 export const todos = (stateArray: Array<ITodoItem> = [], action: any) => {
-  console.log("Action -- ", action);
   const { type, payload } = action;
 
   switch (type) {
@@ -12,7 +32,6 @@ export const todos = (stateArray: Array<ITodoItem> = [], action: any) => {
         text,
         isCompleted: false,
       };
-      console.log("state array - ", stateArray);
       return stateArray.concat(newTodo);
     }
     case REMOVE_TODO: {
