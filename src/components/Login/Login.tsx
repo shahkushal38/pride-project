@@ -1,7 +1,6 @@
 import { PrimaryButton, Stack, StackItem, TextField } from "@fluentui/react";
 import { useCallback, useState } from "react";
 import { useStyles } from "./useStyles/useStyles";
-import { useNavigate } from "react-router-dom";
 
 interface ILogin {
   setToken: (userName: string, password: string) => void;
@@ -11,15 +10,14 @@ export function Login(props: ILogin): JSX.Element {
 
   const [userName, setUserName] = useState<string | undefined>("");
   const [password, setPassword] = useState<string | undefined>("");
-  // const navigate = useNavigate();
+
   const styles = useStyles();
 
   const handleSubmitClick = useCallback(() => {
     console.log("in submit");
     if (userName && password) {
       setToken(userName, password);
-      // navigate("/FirstComponent");
-      console.log("In if Login");
+      window.location.reload();
     } else {
       alert("Enter proper details");
     }

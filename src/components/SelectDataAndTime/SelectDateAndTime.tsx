@@ -25,7 +25,6 @@ export function SelectDateAndTime(props: ISelectDateAndTimeProps): JSX.Element {
   }, []);
 
   useEffect(() => {
-    console.log("Inside useEffect", date);
     if (date === "Tue Feb 13 2024") {
       setFlag(true);
     } else {
